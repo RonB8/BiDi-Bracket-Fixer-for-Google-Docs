@@ -48,7 +48,7 @@ You can run it as many times as you like — though note it doesn't yet skip bra
 
 ---
 
-## First-run-permissions
+## First-run permissions
 
 The very first time you open the tool, Google walks you through a one-time authorization. You'll see two things:
 
