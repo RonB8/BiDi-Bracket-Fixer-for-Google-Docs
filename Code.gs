@@ -1,3 +1,7 @@
+// Directional marks — invisible characters that give neutral brackets a direction to anchor to.
+const RLM = '\u200F';  // Right-to-Left Mark
+const LRM = '\u200E';  // Left-to-Right Mark
+
 function onOpen() {
   DocumentApp.getUi()
     .createMenu('Fixing BiDi')
@@ -11,11 +15,8 @@ function showSidebar() {
   DocumentApp.getUi().showSidebar(html);
 }
 
-
 function fixBidiBrackets() {
   const body = DocumentApp.getActiveDocument().getBody();
-  const RLM = '\u200F';
-  const LRM = '\u200E';
 
   const RTL  = '\u0590-\u05FF\u0600-\u06FF\u0700-\u074F\u0750-\u077F\u0780-\u07BF\u07C0-\u07FF';
   const LTR  = '\u0041-\u005A\u0061-\u007A\u00C0-\u024F\u0370-\u03FF\u0400-\u04FF\u0530-\u058F\u0900-\u097F';
@@ -40,6 +41,11 @@ function fixBidiBrackets() {
 
 function fixTransition(body, rule, open) {
   // Pattern: [before] spaces? [opening bracket] [after]
+  //
+  // This is idempotent by construction: once a mark is inserted right before a
+  // bracket, the character immediately preceding the bracket is no longer a
+  // letter or space, so the pattern no longer matches on a re-run. No duplicate
+  // marks can accumulate.
   const pattern = '[' + rule.before + '] *[' + open + '][' + rule.after + ']';
 
   // Step 1: collect matches + find where the bracket sits within each match
