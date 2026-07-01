@@ -28,29 +28,41 @@ Crucially, it only touches brackets that are actually on a boundary between oppo
 
 ## Installation
 
-This add-on isn't on the Marketplace — you run it from your own copy in about two minutes.
+This add-on isn't on the Marketplace — you set it up from your own copy in about two minutes.
 
 1. Open any Google Doc.
 2. Go to **Extensions → Apps Script**. A new editor tab opens.
 3. Delete the placeholder code in `Code.gs` and paste in the contents of [`Code.gs`](Code.gs) from this repo.
 4. Click the **+** next to *Files*, choose **HTML**, name it `Sidebar` (exactly), and paste in the contents of [`Sidebar.html`](Sidebar.html).
 5. Save (Ctrl/Cmd + S).
-6. Select the `onOpen` function from the dropdown and click **Run** once. Grant the permissions it asks for (this lets the script edit *your* document — see [Permissions](#permissions) below).
-7. Reload your Google Doc. A new **Fixing BiDi** menu appears in the top bar.
+6. Go back to your Google Doc and **reload the page**. A new **Fixing BiDi** menu appears in the top bar.
 
 ## Usage
 
 1. Click **Fixing BiDi → Open Window** in the menu bar.
-2. A sidebar opens. Click **Fix Text Direction**.
-3. The tool scans the document and reports how many corrections it made, grouped by direction transition.
+2. **The first time only:** Google will ask you to authorize the script (see [First-run permissions](#first-run-permissions) below). Approve it once, then click the menu item again.
+3. A sidebar opens. Click **Fix Text Direction**.
+4. The tool scans the document and reports how many corrections it made, grouped by direction transition.
 
 You can run it as many times as you like — though note it doesn't yet skip brackets that already have a mark (see [Known limitations](#known-limitations)).
 
 ---
 
-## Permissions
+## First-run-permissions
 
-The add-on requests access to the current document because it needs to read the text (to find boundary brackets) and edit it (to insert the invisible marks). It does **not** send your document anywhere — all processing happens inside Google's own Apps Script runtime. Nothing leaves your Google account.
+The very first time you open the tool, Google walks you through a one-time authorization. You'll see two things:
+
+**1. A permission request.** The add-on asks for access to the current document because it needs to read the text (to find boundary brackets) and edit it (to insert the invisible marks). It does **not** send your document anywhere — all processing happens inside Google's own Apps Script runtime, and nothing leaves your Google account.
+
+**2. A "Google hasn't verified this app" screen.** This is expected and safe here. The warning appears for any script that hasn't gone through Google's formal review — it says nothing about the code being harmful. In this case *you* are the one who pasted in the code and are running it on your own document, so there's no third party involved at all; it's like running a script you wrote yourself.
+
+To get past it:
+
+1. On the warning screen, click **Advanced** (bottom-left).
+2. Click **Go to *[project name]* (unsafe)**.
+3. Review the permissions and click **Allow**.
+
+The word "unsafe" is Google's generic label for any unverified script — it doesn't mean this one is. The exact button wording may differ slightly by interface language, but the flow is the same. You only need to do this once; after that the tool just works.
 
 ---
 
