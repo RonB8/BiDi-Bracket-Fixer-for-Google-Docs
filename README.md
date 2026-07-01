@@ -28,6 +28,12 @@ Crucially, it only touches brackets that are actually on a boundary between oppo
 
 ## Installation
 
+
+
+https://github.com/user-attachments/assets/de1ec56b-acfa-4b0d-9650-9b69d213c2da
+
+
+
 This add-on isn't on the Marketplace - you set it up from your own copy in about two minutes.
 
 1. Open any Google Doc.
